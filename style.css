@@ -1,0 +1,773 @@
+/* =========================================================
+   PORTAFOLIO CARMEN ELENA CORDERO PERALTA
+   Paleta: crema, beige mate, terracota apagado, verde oliva,
+   gris carbón. Tipografía: Fraunces (títulos) + Karla (texto).
+   ========================================================= */
+
+:root {
+  /* Colores */
+  --color-crema: #F6F1E7;
+  --color-beige: #EBE0CB;
+  --color-blanco-calido: #FFFDF8;
+  --color-carbon: #3A3532;
+  --color-carbon-suave: #6B635C;
+  --color-terracota: #A85C3F;
+  --color-terracota-suave: #C98565;
+  --color-oliva: #737A5E;
+  --color-marron: #8B6F52;
+  --color-borde: #DED2B8;
+
+  /* Tipografía */
+  --fuente-titulos: "Fraunces", Georgia, serif;
+  --fuente-texto: "Karla", Arial, sans-serif;
+
+  /* Layout */
+  --ancho-maximo: 1120px;
+  --radio-suave: 14px;
+  --radio-chico: 8px;
+  --sombra-suave: 0 10px 30px rgba(58, 53, 50, 0.08);
+  --sombra-chica: 0 4px 14px rgba(58, 53, 50, 0.07);
+  --transicion: 0.35s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  color: var(--color-carbon);
+  background-color: var(--color-crema);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  color: var(--color-carbon);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.seccion {
+  padding: 88px 0;
+  scroll-margin-top: 78px;
+}
+
+.seccion-alterna {
+  background-color: var(--color-beige);
+}
+
+/* =========================================================
+   ACCESIBILIDAD / FOCO
+   ========================================================= */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-terracota);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .galeria-item img,
+  .tarjeta-experiencia,
+  .hero-foto-marco {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   ANIMACIÓN DE APARICIÓN AL HACER SCROLL
+   ========================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(246, 241, 231, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.navbar-inner {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-terracota);
+  letter-spacing: 0.3px;
+}
+
+.nav-menu ul {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-carbon-suave);
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transicion), border-color var(--transicion);
+}
+
+.nav-link:hover {
+  color: var(--color-terracota);
+  border-color: var(--color-terracota-suave);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 19px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-carbon);
+  border-radius: 2px;
+  transition: transform var(--transicion), opacity var(--transicion);
+}
+
+.hamburger.abierto span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.hamburger.abierto span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.abierto span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  padding: 80px 0 100px;
+  scroll-margin-top: 78px;
+}
+
+.hero-inner {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-etiqueta {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: var(--color-oliva);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+
+.hero-nombre {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.hero-roles {
+  font-size: 1.1rem;
+  color: var(--color-carbon-suave);
+  max-width: 46ch;
+  margin: 0 0 34px;
+}
+
+.hero-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-contacto li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.98rem;
+}
+
+.hero-contacto i {
+  color: var(--color-terracota);
+  width: 18px;
+  text-align: center;
+}
+
+.hero-contacto a:hover {
+  color: var(--color-terracota);
+}
+
+.hero-foto-contenedor {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-foto-marco {
+  position: relative;
+  width: min(320px, 70vw);
+  aspect-ratio: 1 / 1.08;
+  border-radius: 50% 50% 48% 52% / 55% 52% 48% 45%;
+  overflow: hidden;
+  background-color: var(--color-beige);
+  box-shadow: var(--sombra-suave);
+  border: 6px solid var(--color-blanco-calido);
+}
+
+.hero-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================================
+   TÍTULOS DE SECCIÓN
+   ========================================================= */
+.titulo-seccion {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.titulo-seccion i {
+  color: var(--color-terracota);
+  font-size: 1.3rem;
+}
+
+.titulo-seccion h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+.titulo-seccion-secundario {
+  margin-top: 56px;
+  margin-bottom: 28px;
+}
+
+.titulo-seccion-secundario h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.titulo-seccion-secundario i {
+  font-size: 1.1rem;
+}
+
+/* =========================================================
+   PERFIL PROFESIONAL
+   ========================================================= */
+.tarjeta-perfil {
+  background-color: var(--color-blanco-calido);
+  border-left: 4px solid var(--color-terracota);
+  border-radius: var(--radio-chico);
+  padding: 34px 38px;
+  box-shadow: var(--sombra-chica);
+}
+
+.tarjeta-perfil p {
+  margin: 0 0 18px;
+  color: var(--color-carbon-suave);
+  font-size: 1.02rem;
+}
+
+.tarjeta-perfil p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   ÁREAS DE EXPERIENCIA Y FORTALEZAS (tags / chips)
+   ========================================================= */
+.lista-fortalezas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lista-fortalezas li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-blanco-calido);
+  border: 1px solid var(--color-borde);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 0.92rem;
+  color: var(--color-carbon-suave);
+  transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.lista-fortalezas li:hover {
+  border-color: var(--color-terracota-suave);
+  transform: translateY(-2px);
+}
+
+.lista-fortalezas i {
+  color: var(--color-oliva);
+}
+
+/* =========================================================
+   EXPERIENCIA LABORAL
+   ========================================================= */
+.linea-tiempo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 27px;
+  width: 1px;
+  background-color: var(--color-borde);
+}
+
+.tarjeta-experiencia {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.icono-experiencia {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-blanco-calido);
+  border: 1px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--color-terracota);
+}
+
+.contenido-experiencia {
+  background-color: var(--color-blanco-calido);
+  border-radius: var(--radio-chico);
+  padding: 22px 26px;
+  box-shadow: var(--sombra-chica);
+  flex: 1;
+}
+
+.experiencia-tipo {
+  margin: 0 0 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.4px;
+  color: var(--color-oliva);
+  font-weight: 600;
+}
+
+.contenido-experiencia h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.contenido-experiencia p:last-child {
+  margin: 0;
+  color: var(--color-carbon-suave);
+  font-size: 0.98rem;
+}
+
+/* =========================================================
+   GALERÍA
+   ========================================================= */
+.galeria-intro {
+  color: var(--color-carbon-suave);
+  margin: -20px 0 34px;
+  max-width: 60ch;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.galeria-item {
+  border: none;
+  padding: 0;
+  border-radius: var(--radio-suave);
+  overflow: hidden;
+  box-shadow: var(--sombra-chica);
+  cursor: pointer;
+  background-color: var(--color-beige);
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galeria-item:hover img {
+  transform: scale(1.06);
+}
+
+.galeria-item::after {
+  content: "\f00e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.4rem;
+  background-color: rgba(58, 53, 50, 0.28);
+  opacity: 0;
+  transition: opacity var(--transicion);
+}
+
+.galeria-item:hover::after {
+  opacity: 1;
+}
+
+/* =========================================================
+   LOGROS
+   ========================================================= */
+.lista-logros {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 32px;
+}
+
+.lista-logros li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--color-carbon-suave);
+  font-size: 0.98rem;
+}
+
+.lista-logros i {
+  color: var(--color-oliva);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   EDUCACIÓN
+   ========================================================= */
+.tarjeta-educacion {
+  background-color: var(--color-blanco-calido);
+  border-radius: var(--radio-chico);
+  padding: 30px 36px;
+  box-shadow: var(--sombra-chica);
+  max-width: 560px;
+  border-left: 4px solid var(--color-oliva);
+}
+
+.tarjeta-educacion h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.tarjeta-educacion p {
+  margin: 0;
+  color: var(--color-carbon-suave);
+}
+
+/* =========================================================
+   REFERENCIAS
+   ========================================================= */
+.grid-referencias {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.tarjeta-referencia {
+  background-color: var(--color-blanco-calido);
+  border-radius: var(--radio-chico);
+  padding: 26px 30px;
+  box-shadow: var(--sombra-chica);
+}
+
+.referencia-tipo {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.4px;
+  color: var(--color-oliva);
+  font-weight: 600;
+}
+
+.tarjeta-referencia h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.tarjeta-referencia a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-terracota);
+  font-weight: 500;
+}
+
+.tarjeta-referencia a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   CONTACTO
+   ========================================================= */
+.contacto-intro {
+  color: var(--color-carbon-suave);
+  margin: -20px 0 34px;
+  max-width: 60ch;
+}
+
+.lista-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 40px;
+}
+
+.lista-contacto li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+.lista-contacto i {
+  color: var(--color-terracota);
+  width: 18px;
+  text-align: center;
+}
+
+.lista-contacto a:hover {
+  color: var(--color-terracota);
+}
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+.footer {
+  background-color: var(--color-carbon);
+  color: var(--color-crema);
+  text-align: center;
+  padding: 26px 20px;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   LIGHTBOX / MODAL DE GALERÍA
+   ========================================================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(58, 53, 50, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  z-index: 200;
+}
+
+.lightbox.abierto {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(90vw, 900px);
+  max-height: 85vh;
+  border-radius: var(--radio-chico);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-cerrar {
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 42px;
+  }
+
+  .hero-contacto {
+    align-items: center;
+  }
+
+  .hero-roles {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-foto-contenedor {
+    order: -1;
+  }
+
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL
+   ========================================================= */
+@media (max-width: 768px) {
+  .seccion {
+    padding: 64px 0;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-crema);
+    border-bottom: 1px solid var(--color-borde);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transicion);
+  }
+
+  .nav-menu.abierto {
+    max-height: 420px;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 24px 20px;
+  }
+
+  .nav-menu li {
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 14px 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .lista-logros {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-referencias {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta-perfil {
+    padding: 26px 24px;
+  }
+
+  .linea-tiempo::before {
+    left: 23px;
+  }
+
+  .icono-experiencia {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .lista-contacto {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
